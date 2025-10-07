@@ -1,0 +1,20 @@
+name: Test
+
+on:
+  repository_dispatch:
+    types: [event_a, event_b]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - name: Test
+        run: |
+          if [ "${{ github.event.action }}" == "event_a" ]; then
+            echo "Event A triggered"
+          fi
+
+          if [ "${{ github.event.action }}" == "event_b"]; then
+            echo "Event B triggered"
+          fi
